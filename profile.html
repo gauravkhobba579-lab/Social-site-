@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowSite - Profile</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+<header class="navbar">
+  <h2>Grow<span>Site</span></h2>
+  <button onclick="showMessage('Notifications')">🔔</button>
+</header>
+
+<main class="container">
+
+  <section class="cover">
+    <div class="cover-text">Welcome to GrowSite</div>
+  </section>
+
+  <section class="profile">
+    <div class="profile-top">
+      <div class="avatar" id="avatar">G</div>
+      <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+    </div>
+
+    <h2 id="name">Gaurav</h2>
+    <p class="username" id="username">@gaurav</p>
+    <p id="bio">Connect • Create • Grow 🚀</p>
+
+    <div class="stats">
+      <div><strong id="postsCount">0</strong><span>Posts</span></div>
+      <div><strong>250</strong><span>Followers</span></div>
+      <div><strong>180</strong><span>Following</span></div>
+    </div>
+
+    <button class="share-btn" onclick="shareProfile()">Share Profile</button>
+  </section>
+
+  <section class="tabs">
+    <button class="active" onclick="showTab('posts')">Posts</button>
+    <button onclick="showTab('saved')">Saved</button>
+    <button onclick="showTab('about')">About</button>
+  </section>
+
+  <section id="content" class="content">
+    <div class="empty">
+      <h3>Your posts will appear here</h3>
+      <p>Start creating on GrowSite!</p>
+    </div>
+  </section>
+
+</main>
+
+<nav class="bottom-nav">
+  <a href="index.html">⌂<small>Home</small></a>
+  <a href="#">⌕<small>Search</small></a>
+  <a href="#">＋<small>Create</small></a>
+  <a href="#">♡<small>Activity</small></a>
+  <a href="profile.html" class="selected">●<small>Profile</small></a>
+</nav>
+
+<script src="profile.js"></script>
+</body>
+      </html>
+      
