@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <title>GrowSite - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="brand">
+    <div class="logo">G</div>
+    <h1>Grow<span>Site</span></h1>
+    <p>CONNECT • CREATE • GROW</p>
+  </div>
+
+  <div class="login-box">
+
+    <h2 id="formTitle">Welcome Back!</h2>
+    <p class="subtitle" id="formSubtitle">Login to your account</p>
+
+    <form id="authForm">
+
+      <div id="nameField" class="input-group hidden">
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+      </div>
+
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="password"
+          placeholder="Enter password" minlength="8" required>
+      </div>
+
+      <button type="submit" class="main-btn" id="submitBtn">
+        LOGIN
+      </button>
+
+    </form>
+
+    <p class="forgot" id="forgotBtn">Forgot Password?</p>
+
+    <div class="separator">
+      <span>OR</span>
+    </div>
+
+    <button class="google-btn" type="button" id="googleBtn">
+      Continue with Google
+    </button>
+
+    <p class="switch-text">
+      <span id="switchMessage">Don't have an account?</span>
+      <button id="switchBtn" type="button">Sign Up</button>
+    </p>
+
+  </div>
+
+  <p class="footer">
+    By continuing, you agree to our
+    <span>Terms</span> and <span>Privacy Policy</span>.
+  </p>
+
+  <p id="message" role="status"></p>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+          </html>
+Social-site-
