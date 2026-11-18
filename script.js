@@ -1,58 +1,74 @@
+import { createClient } from 'https://esm.sh'
+
+const supabaseUrl = 'https://supabase.co'
+const supabaseKey = 'sb_publishable_1CGe3TpztJwqClx9vUvI8M6uD79iYwW5q6D7rP9'
+
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 let isSignup = false;
-
-const form = document.getElementById("authForm");
+const form = document.getElementById("form");
 const nameField = document.getElementById("nameField");
 const formTitle = document.getElementById("formTitle");
-const subtitle = document.getElementById("formSubtitle");
+const subtitle = document.getElementById("subtitle");
 const submitBtn = document.getElementById("submitBtn");
 const switchBtn = document.getElementById("switchBtn");
 const switchMessage = document.getElementById("switchMessage");
 const message = document.getElementById("message");
 
 switchBtn.addEventListener("click", () => {
-  isSignup = !isSignup;
-
-  nameField.classList.toggle("hidden", !isSignup);
-
-  document.getElementById("name").required = isSignup;
-
-  formTitle.textContent = isSignup
-    ? "Create Account"
-    : "Welcome Back!";
-
-  subtitle.textContent = isSignup
-    ? "Join the GrowSite community"
-    : "Login to your account";
-
-  submitBtn.textContent = isSignup
-    ? "CREATE ACCOUNT"
-    : "LOGIN";
-
-  switchMessage.textContent = isSignup
-    ? "Already have an account?"
-    : "Don't have an account?";
-
-  switchBtn.textContent = isSignup
-    ? "Login"
-    : "Sign Up";
-
-  message.textContent = "";
+    isSignup = !isSignup;
+    if (isSignup) {
+        formTitle.innerText = "Create Account";
+        submitBtn.innerText = "SIGN UP";
+        switchMessage.innerText = "Already have an account?";
+        switchBtn.innerText = "Login";
+        if(nameField) nameField.style.maxHeight = "60px";
+    } else {
+        formTitle.innerText = "Login to your account";
+        submitBtn.innerText = "LOGIN";
+        switchMessage.innerText = "Don't have an account?";
+        switchBtn.innerText = "Register here";
+        if(nameField) nameField.style.maxHeight = "0px";
+    }
 });
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const email = document.querySelector('input[type="email"]').value;
+    const password = document.querySelector('input[type="password"]').value;
+    
+    if (isSignup) {
+        const fullName = document.querySelector('input[type="text"]').value;
+        
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: { full_name: fullName }
+            }
+        });
 
-  message.textContent =
-    "Demo only: Real account login will be connected in the next step.";
-});
+        if (error) {
+            message.innerText = "Error: " + error.message;
+            message.style.color = "red";
+        } else {
+            message.innerText = "Sign Up Successful! Welcome " + fullName;
+            message.style.color = "green";
+        }
+    } else {
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
 
-document.getElementById("forgotBtn").addEventListener("click", () => {
-  message.textContent =
-    "Password recovery will be available after secure login setup.";
-});
-
-document.getElementById("googleBtn").addEventListener("click", () => {
-  message.textContent =
-    "Google Login will be connected in the next step.";
+        if (error) {
+            message.innerText = "Error: " + error.message;
+            message.style.color = "red";
+        } else {
+            message.innerText = "Login Successful! Redirecting...";
+            message.style.color = "green";
+            // window.location.href = "profile.html"; 
+        }
+    }
 });
