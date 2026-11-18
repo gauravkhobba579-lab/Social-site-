@@ -1,68 +1,109 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowSite - Login</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7028d8">
+  <title>G Connect</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Brand Logo and Title -->
-        <div class="brand">
-            <span class="logo">G</span>
-            <h1>Grow Site</h1>
-            <p class="tagline">CONNECT • CREATE • GROW</p>
-        </div>
 
-        <!-- Main Form Container -->
-        <div class="form-box">
-            <h2 id="formTitle">Welcome Back!</h2>
-            <p id="subtitle">Login to your account</p>
+<header class="topbar">
+  <h1>G<span>Connect</span></h1>
+  <div class="top-actions">
+    <button aria-label="Notifications">♡</button>
+    <button aria-label="Messages">✉</button>
+  </div>
+</header>
 
-            <!-- Status Message Display (For success/error alerts) -->
-            <p id="message" style="font-weight: bold; text-align: center; margin: 10px 0;"></p>
+<main>
+  <section class="stories">
+    <div class="story">
+      <div class="story-ring add">+</div>
+      <small>Your story</small>
+    </div>
+    <div class="story">
+      <div class="story-ring"><span>R</span></div>
+      <small>Rahul</small>
+    </div>
+    <div class="story">
+      <div class="story-ring"><span>A</span></div>
+      <small>Aman</small>
+    </div>
+    <div class="story">
+      <div class="story-ring"><span>S</span></div>
+      <small>Simran</small>
+    </div>
+    <div class="story">
+      <div class="story-ring"><span>K</span></div>
+      <small>Karan</small>
+    </div>
+  </section>
 
-            <form id="form">
-                <!-- Name Field (Only visible during Sign Up) -->
-                <div class="input-field" id="nameField" style="max-height: 0px; overflow: hidden; transition: max-height 0.4s ease;">
-                    <input type="text" placeholder="Full Name">
-                </div>
+  <section class="feed-heading">
+    <h2>Discover</h2>
+    <span>Explore your community</span>
+  </section>
 
-                <div class="input-field">
-                    <input type="email" placeholder="Email Address" required>
-                </div>
-
-                <div class="input-field">
-                    <input type="password" id="password" placeholder="Password" required>
-                </div>
-
-                <button type="submit" id="submitBtn">LOGIN</button>
-                
-                <a href="#" class="forgot-pass">Forgot Password?</a>
-            </form>
-
-            <div class="divider">
-                <span>OR</span>
-            </div>
-
-            <!-- Social Login Button -->
-            <button class="google-btn">
-                <img src="https://wikimedia.org" alt="Google Logo" width="18" style="margin-right: 10px; vertical-align: middle;">
-                Continue with Google
-            </button>
-
-            <!-- Toggle Switch Between Login and Register -->
-            <p class="switch-text">
-                <span id="switchMessage">Don't have an account?</span> 
-                <button id="switchBtn" style="background: none; border: none; color: #007bff; cursor: pointer; font-weight: bold; text-decoration: underline;">Register here</button>
-            </p>
-        </div>
+  <article class="post">
+    <div class="post-user">
+      <div class="avatar">G</div>
+      <div>
+        <strong>G Connect</strong>
+        <small>Official demo account</small>
+      </div>
+      <button class="more">•••</button>
     </div>
 
-    <!-- Connecting the JavaScript file -->
-    <script type="module" src="script.js"></script>
+    <div class="post-image">
+      <div class="post-art">
+        <span>WELCOME TO</span>
+        <h2>G CONNECT</h2>
+        <p>Connect • Share • Grow</p>
+      </div>
+    </div>
+
+    <div class="post-actions">
+      <button class="like-btn">♡</button>
+      <button class="comment-btn">▢</button>
+      <button>↗</button>
+      <span class="save">♧</span>
+    </div>
+
+    <p class="likes"><span class="like-count">0</span> likes</p>
+    <p class="caption">
+      <strong>gconnect</strong>
+      Welcome to our new social community!
+    </p>
+    <p class="comments" aria-live="polite"></p>
+    <form class="comment-form">
+      <input type="text" placeholder="Write a comment..." maxlength="200">
+      <button type="submit">Post</button>
+    </form>
+  </article>
+
+  <section class="join-card">
+    <h2>Welcome to G Connect!</h2>
+    <p>A place to share ideas and connect with people.</p>
+    <button onclick="showMessage()">Explore G Connect</button>
+  </section>
+</main>
+
+<nav class="bottom-nav">
+  <button class="active" onclick="showTab('Home')">⌂<small>Home</small></button>
+  <button onclick="showTab('Search')">⌕<small>Search</small></button>
+  <button onclick="showTab('Create')">＋<small>Create</small></button>
+  <button onclick="showTab('Activity')">♡<small>Activity</small></button>
+  <button onclick="showTab('Profile')">◉<small>Profile</small></button>
+</nav>
+
+<div id="message" class="toast" aria-live="polite"></div>
+
+<script src="script.js"></script>
 </body>
-              </html>
+</html>
 
-
+          
