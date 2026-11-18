@@ -1,45 +1,50 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.querySelector('form');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const googleBtn = document.querySelector('.btn-google');
 
-    // 1. Form Submit Validation
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Page refresh hone se rokne ke liye
+const likeButton = document.querySelector(".like-btn");
+const likeCount = document.querySelector(".like-count");
 
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
+let likes = 0;
 
-        // Basic Validation
-        if (!email || !password) {
-            alert('Kripya saari fields ko bharein!');
-            return;
-        }
-
-        // Yahan aap apna backend API login logic laga sakte hain
-        console.log('Logging in with:', { email, password });
-        alert(`GrowSite par aapka swagat hai!\nEmail: ${email}`);
-    });
-
-    // 2. Google Login Button Click Action
-    googleBtn.addEventListener('click', () => {
-        console.log('Google Login clicked');
-        // Firebase ya OAuth link karne par redirect code yahan aayega
-        alert('Google authentication window open ho rahi hai...');
-    });
-
-    // 3. Simple Real-time Input Border Effect (Optional)
-    const inputs = [emailInput, passwordInput];
-    inputs.forEach(input => {
-        input.addEventListener('focus', () => {
-            input.style.borderColor = '#e50914';
-        });
-        input.addEventListener('blur', () => {
-            if (input.value.trim() === '') {
-                input.style.borderColor = '#333439';
-            }
-        });
-    });
+likeButton.addEventListener("click", () => {
+  const liked = likeButton.classList.toggle("liked");
+  likes += liked ? 1 : -1;
+  likeCount.textContent = likes;
+  likeButton.textContent = liked ? "♥" : "♡";
 });
-            
+
+document.querySelector(".comment-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const input = this.querySelector("input");
+  const value = input.value.trim();
+
+  if (!value) return;
+
+  const comment = document.createElement("p");
+  comment.textContent = "You: " + value;
+  comment.style.padding = "8px 14px";
+
+  document.querySelector(".comments").appendChild(comment);
+  input.value = "";
+});
+
+function showMessage() {
+  showToast("Welcome to G Connect!");
+}
+
+function showTab(tab) {
+  showToast(tab + " section will be added soon!");
+  document.querySelectorAll(".bottom-nav button").forEach(button => {
+    button.classList.remove("active");
+  });
+  event.currentTarget.classList.add("active");
+}
+
+function showToast(message) {
+  const toast = document.getElementById("message");
+  toast.textContent = message;
+  toast.style.display = "block";
+
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 2200);
+}
