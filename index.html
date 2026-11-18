@@ -1,83 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111111">
-  <title>GrowSite - Login</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowSite - Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <!-- Brand Logo and Title -->
+        <div class="brand">
+            <span class="logo">G</span>
+            <h1>Grow Site</h1>
+            <p class="tagline">CONNECT • CREATE • GROW</p>
+        </div>
 
-<div class="container">
+        <!-- Main Form Container -->
+        <div class="form-box">
+            <h2 id="formTitle">Welcome Back!</h2>
+            <p id="subtitle">Login to your account</p>
 
-  <div class="brand">
-    <div class="logo">G</div>
-    <h1>Grow<span>Site</span></h1>
-    <p>CONNECT • CREATE • GROW</p>
-  </div>
+            <!-- Status Message Display (For success/error alerts) -->
+            <p id="message" style="font-weight: bold; text-align: center; margin: 10px 0;"></p>
 
-  <div class="login-box">
+            <form id="form">
+                <!-- Name Field (Only visible during Sign Up) -->
+                <div class="input-field" id="nameField" style="max-height: 0px; overflow: hidden; transition: max-height 0.4s ease;">
+                    <input type="text" placeholder="Full Name">
+                </div>
 
-    <h2 id="formTitle">Welcome Back!</h2>
-    <p class="subtitle" id="formSubtitle">Login to your account</p>
+                <div class="input-field">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
 
-    <form id="authForm">
+                <div class="input-field">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
 
-      <div id="nameField" class="input-group hidden">
-        <label>Full Name</label>
-        <input type="text" id="name" placeholder="Enter your name">
-      </div>
+                <button type="submit" id="submitBtn">LOGIN</button>
+                
+                <a href="#" class="forgot-pass">Forgot Password?</a>
+            </form>
 
-      <div class="input-group">
-        <label>Email Address</label>
-        <input type="email" id="email" placeholder="Enter your email" required>
-      </div>
+            <div class="divider">
+                <span>OR</span>
+            </div>
 
-      <div class="input-group">
-        <label>Password</label>
-        <input type="password" id="password"
-          placeholder="Enter password" minlength="8" required>
-      </div>
+            <!-- Social Login Button -->
+            <button class="google-btn">
+                <img src="https://wikimedia.org" alt="Google Logo" width="18" style="margin-right: 10px; vertical-align: middle;">
+                Continue with Google
+            </button>
 
-      <button type="submit" class="main-btn" id="submitBtn">
-        LOGIN
-      </button>
-
-    </form>
-
-    <p class="forgot" id="forgotBtn">Forgot Password?</p>
-
-    <div class="separator">
-      <span>OR</span>
+            <!-- Toggle Switch Between Login and Register -->
+            <p class="switch-text">
+                <span id="switchMessage">Don't have an account?</span> 
+                <button id="switchBtn" style="background: none; border: none; color: #007bff; cursor: pointer; font-weight: bold; text-decoration: underline;">Register here</button>
+            </p>
+        </div>
     </div>
 
-    <button class="google-btn" type="button" id="googleBtn">
-      Continue with Google
-    </button>
-
-    <p class="switch-text">
-      <span id="switchMessage">Don't have an account?</span>
-      <button id="switchBtn" type="button">Sign Up</button>
-    </p>
-
-  </div>
-
-  <p class="footer">
-    By continuing, you agree to our
-    <span>Terms</span> and <span>Privacy Policy</span>.
-  </p>
-
-  <p id="message" role="status"></p>
-
-</div>
-
-<script src="script.js"></script>
+    <!-- Connecting the JavaScript file -->
+    <script type="module" src="script.js"></script>
 </body>
-          </html>
-Social-site-
-<a href="profile.html">
-  <span>👤</span>
-  <small>Profile</small>
-  </a>
+              </html>
+
+
