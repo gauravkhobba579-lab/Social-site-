@@ -1,74 +1,45 @@
-import { createClient } from 'https://esm.sh'
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.querySelector('form');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const googleBtn = document.querySelector('.btn-google');
 
-const supabaseUrl = 'https://supabase.co'
-const supabaseKey = 'sb_publishable_1CGe3TpztJwqClx9vUvI8M6uD79iYwW5q6D7rP9'
+    // 1. Form Submit Validation
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Page refresh hone se rokne ke liye
 
-const supabase = createClient(supabaseUrl, supabaseKey)
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
 
-let isSignup = false;
-const form = document.getElementById("form");
-const nameField = document.getElementById("nameField");
-const formTitle = document.getElementById("formTitle");
-const subtitle = document.getElementById("subtitle");
-const submitBtn = document.getElementById("submitBtn");
-const switchBtn = document.getElementById("switchBtn");
-const switchMessage = document.getElementById("switchMessage");
-const message = document.getElementById("message");
+        // Basic Validation
+        if (!email || !password) {
+            alert('Kripya saari fields ko bharein!');
+            return;
+        }
 
-switchBtn.addEventListener("click", () => {
-    isSignup = !isSignup;
-    if (isSignup) {
-        formTitle.innerText = "Create Account";
-        submitBtn.innerText = "SIGN UP";
-        switchMessage.innerText = "Already have an account?";
-        switchBtn.innerText = "Login";
-        if(nameField) nameField.style.maxHeight = "60px";
-    } else {
-        formTitle.innerText = "Login to your account";
-        submitBtn.innerText = "LOGIN";
-        switchMessage.innerText = "Don't have an account?";
-        switchBtn.innerText = "Register here";
-        if(nameField) nameField.style.maxHeight = "0px";
-    }
-});
+        // Yahan aap apna backend API login logic laga sakte hain
+        console.log('Logging in with:', { email, password });
+        alert(`GrowSite par aapka swagat hai!\nEmail: ${email}`);
+    });
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    
-    const email = document.querySelector('input[type="email"]').value;
-    const password = document.querySelector('input[type="password"]').value;
-    
-    if (isSignup) {
-        const fullName = document.querySelector('input[type="text"]').value;
-        
-        const { data, error } = await supabase.auth.signUp({
-            email: email,
-            password: password,
-            options: {
-                data: { full_name: fullName }
+    // 2. Google Login Button Click Action
+    googleBtn.addEventListener('click', () => {
+        console.log('Google Login clicked');
+        // Firebase ya OAuth link karne par redirect code yahan aayega
+        alert('Google authentication window open ho rahi hai...');
+    });
+
+    // 3. Simple Real-time Input Border Effect (Optional)
+    const inputs = [emailInput, passwordInput];
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            input.style.borderColor = '#e50914';
+        });
+        input.addEventListener('blur', () => {
+            if (input.value.trim() === '') {
+                input.style.borderColor = '#333439';
             }
         });
-
-        if (error) {
-            message.innerText = "Error: " + error.message;
-            message.style.color = "red";
-        } else {
-            message.innerText = "Sign Up Successful! Welcome " + fullName;
-            message.style.color = "green";
-        }
-    } else {
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
-
-        if (error) {
-            message.innerText = "Error: " + error.message;
-            message.style.color = "red";
-        } else {
-            message.innerText = "Login Successful! Redirecting...";
-            message.style.color = "green";
-            // window.location.href = "profile.html"; 
-        }
-    }
+    });
 });
+            
